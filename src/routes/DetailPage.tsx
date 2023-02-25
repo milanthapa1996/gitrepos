@@ -24,12 +24,12 @@ const DetailPage = () => {
         <div className="rounded-lg p-6">
           <div className="flex items-center mb-6">
             <img
-              className="w-12 h-12 rounded-full mr-4"
+              className="w-36 h-36 rounded-2xl mr-4"
               src={state.owner_avatar}
               alt={`${state.owner_name}'s avatar`}
             />
-            <h2 className="text-2xl font-bold">{state.repo_name}</h2>
           </div>
+          <h2 className="text-2xl font-bold mt-2">{state.repo_name}</h2>
           <div className="mb-6 flex items-center space-x-4">
             <span className="text-gray-700 text-lg font-medium flex items-center">
               {state.owner_name} (
@@ -52,7 +52,7 @@ const DetailPage = () => {
             </span>
           </div>
           <div>
-            <p className="text-gray-500 font-medium text-sm">
+            <p className="text-gray-500 font-medium text-lg">
               {state.repo_description}
             </p>
           </div>
