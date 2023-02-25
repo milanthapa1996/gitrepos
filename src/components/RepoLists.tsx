@@ -8,6 +8,7 @@ import { FaFilter } from "react-icons/fa";
 import { FiGrid, FiList } from "react-icons/fi";
 import Pagination from "./Pagination";
 import { FcDeleteDatabase } from "react-icons/fc";
+import FilterDropDown from "./FilterDropDown";
 
 const RepoLists = () => {
   const repos = useSelector((state: RootState) => state.repo.repos);
@@ -15,8 +16,8 @@ const RepoLists = () => {
   const search_query = useSelector(
     (state: RootState) => state.repo.search_query
   );
-
   const [view, setView] = useState<"list" | "grid">("grid");
+
   console.log(repos);
   return (
     <div>
@@ -41,7 +42,7 @@ const RepoLists = () => {
                 }`}
                 onClick={() => setView("grid")}
               />
-              <FaFilter className="mr-2" />
+              <FilterDropDown search_query={search_query} />
             </div>
           </div>
           <div

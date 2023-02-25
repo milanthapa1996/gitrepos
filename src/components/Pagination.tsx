@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { searchRepositories } from "../api/github";
-import {
-  setCount,
-  setRepos,
-  setSearchQuery,
-} from "../features/repos/repoSlice";
+import { setRepos } from "../features/repos/repoSlice";
 
 interface Props {
   total_count: number;
@@ -23,7 +19,7 @@ const Pagination = ({ total_count, search_query }: Props) => {
     const page = Number(e.currentTarget.textContent);
     setCurrentPage(page);
     try {
-      const results = await searchRepositories(search_query, "stars", page);
+      const results = await searchRepositories(search_query, "best-match", page);
       dispatch(setRepos(results.items));
     } catch (error) {
       console.error(error);

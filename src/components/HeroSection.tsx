@@ -2,14 +2,16 @@ import React from "react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { SearchResults, searchRepositories } from "../api/github";
 import { useDispatch } from "react-redux";
-import { setRepos, setCount, setSearchQuery } from "../features/repos/repoSlice";
-
-// const SORT_OPTIONS = ["stars", "forks", "updated"];
+import {
+  setRepos,
+  setCount,
+  setSearchQuery,
+} from "../features/repos/repoSlice";
 
 const HeroSection: React.FC = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
-  // const [sort, setSort] = useState(SORT_OPTIONS[0]);
+
   const [results, setResults] = useState<SearchResults | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -17,15 +19,11 @@ const HeroSection: React.FC = () => {
     setQuery(event.target.value);
   };
 
-  // const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setSort(event.target.value);
-  // };
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     try {
-      const results = await searchRepositories(query, "stars",1);
+      const results = await searchRepositories(query, "best-match", 1);
       dispatch(setRepos(results.items));
       dispatch(setCount(results.total_count));
       dispatch(setSearchQuery(query));
@@ -66,23 +64,7 @@ const HeroSection: React.FC = () => {
                   required
                 />
               </div>
-              {/* <div className="w-40 md:w-auto">
-                <label htmlFor="sort" className="sr-only">
-                  Sort by
-                </label>
-                <select
-                  id="sort"
-                  className="w-full border border-gray-400 rounded-lg px-4 py-2"
-                  value={sort}
-                  onChange={handleSortChange}
-                >
-                  {SORT_OPTIONS.map((option) => (
-                    <option key={option} value={option}>
-                      Sort by {option}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
+
               <div>
                 <button
                   type="submit"
