@@ -17,8 +17,6 @@ const RepoLists = () => {
     (state: RootState) => state.repo.search_query
   );
   const [view, setView] = useState<"list" | "grid">("grid");
-
-  console.log(repos);
   return (
     <div>
       {repos.length > 0 ? (
